@@ -1,8 +1,8 @@
-const connection = require('./database')
+const conn = require('../config/driver')
 
 const data = {
     get(){
-        
+        conn.query()
     },
     getById(){
 
