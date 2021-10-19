@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const users = require('./routes/usersRoute')
 
 const app = express()
-const port = 5656
+const port = (process.env.PORT || 5656)
 
 app.use(bodyParser.urlencoded())
 app.use(bodyParser.json())
