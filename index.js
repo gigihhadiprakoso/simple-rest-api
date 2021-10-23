@@ -12,6 +12,7 @@ app.use(bodyParser.json())
 
 app.get('/', (req, res) => {
     res.send('Welcome to my app!');
+    console.log("", process.env.DATABASE_URL)
 })
 
 app.use('/',users)

@@ -1,11 +1,11 @@
 const database = {
     DEV: {
         host: 'localhost',
-        user:'root',
+        user:'postgres',
         password:'',
         database:'simplerestapi',
         port: '5433',
-        driver: 'mysql'
+        driver: 'postgres'
     },
     LIVE:{
         host: 'ec2-44-198-204-136.compute-1.amazonaws.com',
