@@ -2,27 +2,21 @@ const mysql = require('mysql')
 const {Client} = require('pg')
 
 const config= require('./config')
+
+const configurationDBString = config.DB.driver+"://"+config.DB.user+":"+config.DB.password+"@"+config.DB.host+":"+config.DB.port+"/"+config.DB.database
+
 let conn
+
 
 switch (config.DB.driver) {
     case 'postgres':
         conn = new Client({
-            user: config.DB.user,
-            host: config.DB.host,
-            database: config.DB.database,
-            password: config.DB.password,
-            port: config.DB.port
-        })
+            connectionString: configurationDBString
+        });
         conn.connect();
         break;
     case 'mysql':
-        init = {
-            host: config.DB.host,
-            user: config.DB.user,
-            password: config.DB.password,
-            database: config.DB.database,
-        }
-        conn = mysql.createConnection(init);
+        conn = mysql.createConnection(configurationDBString);
         break;
     default:
         break;
