@@ -3,7 +3,7 @@ const {Client} = require('pg')
 
 const config= require('./config')
 
-const configurationDBString = config.DB.driver+"://"+config.DB.user+":"+config.DB.password+"@"+config.DB.host+":"+config.DB.port+"/"+config.DB.database
+const configurationDBString =  config.DB.driver+"://"+config.DB.user+":"+config.DB.password+"@"+config.DB.host+":"+config.DB.port+"/"+config.DB.database
 
 let conn
 
@@ -11,7 +11,7 @@ let conn
 switch (config.DB.driver) {
     case 'postgres':
         conn = new Client({
-            connectionString: configurationDBString
+            connectionString: process.env.DATABASE_URL ? process.env.DATABASE_URL : configurationDBString
         });
         conn.connect();
         break;
