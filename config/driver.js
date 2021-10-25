@@ -12,7 +12,9 @@ switch (config.DB.driver) {
     case 'postgres':
         conn = new Client({
             connectionString: process.env.DATABASE_URL ? process.env.DATABASE_URL : configurationDBString,
-            ssl:  process.env.LIVE ? true : false
+            ssl:  {
+                rejectUnauthorized: process.env.LIVE ? true : false
+            }
         });
         conn.connect();
         break;

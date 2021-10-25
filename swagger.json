@@ -8,7 +8,7 @@
             "name":"MIT",
             "url":"https://opensource.org/licenses/MIT"
         },
-        "host":"localhost:5656",
+        "host": "https://aqueous-forest-78736.herokuapp.com",
         "basePath":"/",
         "tags":[
             {
