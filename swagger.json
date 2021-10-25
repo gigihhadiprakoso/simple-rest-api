@@ -1,0 +1,170 @@
+{
+    "swagger":"2.0",
+    "info":{
+        "version":"1.0",
+        "title":"Documentation REST API",
+        "description":"",
+        "license":{
+            "name":"MIT",
+            "url":"https://opensource.org/licenses/MIT"
+        },
+        "host":"localhost:5656",
+        "basePath":"/",
+        "tags":[
+            {
+                "name":"Users",
+                "description":""
+            }
+        ],
+        "schemes":["http"],
+        "consumes":["application/json"],
+        "produces":["application/json"]
+    },
+    "paths":{
+        "/user/{id}":{
+            "get":{
+                "tags":["User"],
+                "summary":"Find specific user in system",
+                "parameters":[
+                    {
+                        "name":"id",
+                        "type":"integer",
+                        "in":"path",
+                        "description": "ID of user"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Successful Operation",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/user":{
+            "get":{
+                "tags":["User"],
+                "summary":"Find user in system",
+                "description":"",
+                "responses":{
+                    "200":{
+                        "description":"Successful Operation",
+                        "schema": {
+                            "$ref": "#/definitions/Users"
+                        }
+                    }
+                }
+            },
+            "post":{
+                "tags":["User"],
+                "description":"",
+                "parameters":[
+                    {
+                        "name":"name",
+                        "type":"string",
+                        "in":"formData",
+                        "description": "Name of user"
+                    },
+                    {
+                        "name":"email",
+                        "type":"string",
+                        "in":"formData",
+                        "description":"Email of user",
+                        "required":true
+                    },
+                    {
+                        "name":"address",
+                        "type":"string",
+                        "in":"formData",
+                        "description": "Address of user"
+                    }
+                ],
+                "summary":"Insert new user in system",
+                "responses":{
+                    "200":{
+                        "description":"Successful Operation",
+                        "schema": {
+                            "$ref": "#/definitions/ID"
+                        }
+                    }
+                }
+            },
+            "put":{
+                "tags":["User"],
+                "summary":"Update user",
+                "parameters":[
+                    {
+                        "name":"id",
+                        "type":"integer",
+                        "in":"path"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Successful Operation",
+                        "schema": {
+                            "$ref": "#/definitions/ID"
+                        }
+                    }
+                }
+            },
+            "delete":{
+                "tags":["User"],
+                "summary":"Delete specific user",
+                "parameters":[
+                    {
+                        "name":"id",
+                        "type":"integer",
+                        "in":"path"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"Successful Operation",
+                        "schema": {
+                            "$ref": "#/definitions/ID"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions":{
+        "Users":{
+            "type":"array",
+            "items":{
+                "$ref":"#/definitions/User"
+            }
+        },
+        "User":{
+                "type":"object",
+                "required":["email"],
+                "properties":{
+                    "id":{
+                        "type":"integer",
+                        "readOnly":true
+                    },
+                    "name":{
+                        "type":"string"
+                    },
+                    "email":{
+                        "type":"string",
+                        "uniqueItems":true
+                    },
+                    "address":{
+                        "type":"string"
+                    }
+                }
+        },
+        "ID":{
+            "type":"object",
+            "properties":{
+                "id":{
+                    "type":"integer"
+                }
+            }
+        }
+    }
+}
