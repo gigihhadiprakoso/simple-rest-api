@@ -13,7 +13,7 @@ switch (config.DB.driver) {
         conn = new Client({
             connectionString: process.env.DATABASE_URL ? process.env.DATABASE_URL : configurationDBString,
             ssl:  {
-                rejectUnauthorized: process.env.LIVE ? true : false
+                rejectUnauthorized: process.env.LIVE ? false : true
             }
         });
         conn.connect();
