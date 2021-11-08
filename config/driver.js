@@ -15,7 +15,7 @@ switch (config.DB.driver) {
             // ssl:  {
             //     rejectUnauthorized: process.env.LIVE ? false : true
             // }
-            ssl: process.env.LIVE ? true : false
+            ssl: process.env.LIVE ? { rejectUnauthorized: false} : false
         });
         conn.connect();
         break;
